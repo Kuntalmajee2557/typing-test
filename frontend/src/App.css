@@ -1,0 +1,13 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  background-color: black;
+  border: solid red 2px;
+  margin: 5px;
+  padding: 5px;
+  height: 100vh;
+}
+
+.text{
+  color: wheat;
+}
