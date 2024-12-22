@@ -8,7 +8,20 @@ function App() {
   const [time, setTime] = useState(30);
   const [startTyping, setStartTyping] = useState(false);
   const [speed, setSpeed] = useState<number>(0);
+  const [accuracy, setAccuracy] = useState<number>(0);
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
+
+  useEffect(() => {
+    let count = 0;
+    let inputChars = inputText.split('');
+    let quoteChars = quote.split('');
+    inputChars.forEach((word, index) => {
+      if(word === quoteChars[index]){
+        count++;
+      }
+      setAccuracy(((count / inputChars.length) * 100));
+    })
+  },[inputText])
 
   useEffect(() => {
     const words = inputText.split(" ");
@@ -48,12 +61,13 @@ function App() {
         localMistake++;
       }
     })
-    
+
     setMistake(localMistake)
   }
 
   return (
     <div className="container">
+      <p className="text">{accuracy}</p>
       <p className="text">speed : {speed}</p>
       <p className="text">time : {time}</p>
       <p className="text">{inputText}</p>
